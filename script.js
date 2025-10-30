@@ -96,27 +96,21 @@ recognition.onresult = (event) => {
     localStorage.setItem("chantCount", chantCount);
 
     if (chantGoal && chantCount >= chantGoal) {
-      playBeep();
-      alert(`🎉 You completed ${chantGoal} chants of "${chantWord}"!`);
-      stopRecognition();
+  playBeep();
+  showMessage(`🎉 Completed ${chantGoal} chants of "${chantWord}"!`);
+  stopRecognition();
     }
   }
 };
 
 // ---- Auto restart recognition (Android fix) ----
 recognition.onend = () => {
-  console.log("Recognition ended");
+  console.log("Recognition stopped, restarting...");
   if (listening) {
-    statusEl.textContent = "Reconnecting mic...";
-    restartTimeout = setTimeout(() => {
-      console.log("Restarting recognition...");
-      try {
-        recognition.start();
-        statusEl.textContent = "🎙️ Listening...";
-      } catch (e) {
-        console.warn("Restart error:", e);
-      }
-    }, 800); // restart after short delay
+    setTimeout(() => {
+      try { recognition.start(); }
+      catch (err) { console.log("Restart failed:", err); }
+    }, 500);
   }
 };
 
@@ -140,6 +134,22 @@ function playBeep() {
     }
   } catch (e) {
     console.warn("Audio error:", e);
+  }
+  function showMessage(text) {
+  const msg = document.createElement("div");
+  msg.textContent = text;
+  msg.style.position = "fixed";
+  msg.style.bottom = "20px";
+  msg.style.left = "50%";
+  msg.style.transform = "translateX(-50%)";
+  msg.style.background = "#333";
+  msg.style.color = "#fff";
+  msg.style.padding = "10px 20px";
+  msg.style.borderRadius = "20px";
+  msg.style.zIndex = "9999";
+  msg.style.fontSize = "16px";
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 4000);
   }
 }
 
