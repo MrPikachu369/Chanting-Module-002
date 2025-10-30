@@ -1,0 +1,83 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(circle, #fff7e6, #ffd6a5);
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+  border-radius: 20px;
+  padding: 55px;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  width: 600px;
+  height: 500px;
+}
+
+h1 {
+  color: #ffb703;
+}
+
+.inputs input {
+  width: 85%;
+  margin: 6px 0;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ddd;
+}
+
+#saveSettings {
+  background: #219ebc;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.counter-box {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  margin-top: 20px;
+}
+
+#counter {
+  font-size: 80px;
+  color: #fb8500;
+  margin: 0;
+}
+
+#goal {
+  font-size: 24px;
+  color: gray;
+  margin-left: 5px;
+}
+
+.buttons button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  background: #ffb703;
+  color: #fff;
+  font-weight: bold;
+}
+
+.buttons button:hover {
+  background: #fb8500;
+}
+
+.note {
+  color: gray;
+  font-size: 13px;
+  margin-top: 10px;
+}

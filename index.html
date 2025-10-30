@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chant Counter</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#ffb703" />
+</head>
+<body>
+  <div class="container">
+    <h1>🕉️ Chant Counter</h1>
+
+    <div class="inputs">
+      <input id="chantWord" type="text" placeholder="Enter your chant word (e.g., Om)" />
+      <input id="chantGoal" type="number" placeholder="Enter target count (e.g., 108)" />
+      <button id="saveSettings">💾 Save</button>
+    </div>
+
+    <div class="counter-box">
+      <p id="counter">0</p>
+      <p id="goal">/ 0</p>
+    </div>
+
+    <div class="buttons">
+      <button id="startBtn">🎤 Start Listening</button>
+      <button id="resetBtn">♻️ Reset</button>
+    </div>
+
+    <p class="note">🎧 Say your chant clearly. Works offline after first use.</p>
+  </div>
+
+  <audio id="beep" src="beep.mp3" preload="auto"></audio>
+  <script src="script.js"></script>
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("service-worker.js")
+        .then(() => console.log("✅ Service Worker Registered"))
+        .catch(err => console.error("SW Registration Failed:", err));
+    }
+  </script>
+</body>
+</html>
