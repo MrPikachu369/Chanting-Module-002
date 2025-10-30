@@ -90,15 +90,19 @@ if (!SpeechRecognition) {
 
   // recognition can stop by browser — restart when we still want to listen
   recognition.onend = () => {
-    console.log("Recognition ended");
-    if (listening) {
-      // small timeout prevents rapid restart loops
-      setTimeout(() => {
-        try { recognition.start(); }
-        catch(e) { console.warn("Restart failed:", e); }
-      }, 250);
-    }
-  };
+  console.log("Recognition ended");
+  if (listening) {
+    console.log("Restarting recognition...");
+    setTimeout(() => {
+      try {
+        recognition.start();
+      } catch (e) {
+        console.warn("Restart failed:", e);
+      }
+    }, 500); // restart after 0.5 sec
+  }
+};
+  
 
   recognition.onerror = (e) => {
     console.warn("Speech recognition error:", e);
